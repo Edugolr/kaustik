@@ -3,7 +3,6 @@ import './App.css';
 import Schedule from './components/Schedule';
 import NavBar from './components/NavBar';
 
-
 class App extends Component {
     constructor(props) {
       super(props);

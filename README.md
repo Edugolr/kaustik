@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Edugolr/kaustik-schedule.svg?branch=master)](https://travis-ci.org/Edugolr/kaustik-schedule)
+[![Maintainability](https://api.codeclimate.com/v1/badges/02545f19725f15fad6f7/maintainability)](https://codeclimate.com/github/Edugolr/kaustik-schedule/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/Edugolr/kaustik-schedule/badge.svg?branch=master)](https://coveralls.io/github/Edugolr/kaustik-schedule?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

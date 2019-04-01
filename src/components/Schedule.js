@@ -10,6 +10,7 @@ import {
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
+
 const theme = createMuiTheme({
     typography: {
        useNextVariants: true,
@@ -34,6 +35,7 @@ function startDateBeforeEndDate(element, index, array) {
    return (element.startDate < element.endDate);
 }
 
+
 class Schedule extends Component {
     render() {
         const formattedData =  this.props.appointments.filter(startDateBeforeEndDate).map(mapAppointmentData);
@@ -41,16 +43,22 @@ class Schedule extends Component {
       <div>
           <MuiThemeProvider theme={theme}>
             <Paper>
-              <Scheduler  data={formattedData}>
+              <Scheduler onAppointmentClick={this.handleEvent} height={600} data={formattedData}>
                 <ViewState currentDate={this.props.appointments[0].startDate} />
+
                 <WeekView
+
                     intervalCount= {1}
                     cellDuration= {60}
                 />
-                <Appointments />
+
+                <Appointments/>
+
               </Scheduler>
+
             </Paper>
           </MuiThemeProvider>
+
       </div>
     );
   }
