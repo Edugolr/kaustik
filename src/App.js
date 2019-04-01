@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Schedule from './components/Schedule';
+import NavBar from './components/NavBar';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+        isLoaded: false,
+        appointments: []
+      };
+    }
+    componentDidMount() {
+      fetch("http://www.mocky.io/v2/5c988db52f000073009f3090")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              appointments: result
+            });
+          },
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
+    }
+    render() {
+      const { error, isLoaded, appointments } = this.state;
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      } else if (!isLoaded) {
+        return <div>Loading...</div>;
+      } else {
+        return (
+            <div>
+                <NavBar />
+                <Schedule appointments={appointments}/>
+            </div>
+        );
+      }
+    }
 }
 
 export default App;
