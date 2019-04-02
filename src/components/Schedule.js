@@ -9,7 +9,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
-
+import Grid from '@material-ui/core/Grid';
 
 const theme = createMuiTheme({
     typography: {
@@ -39,29 +39,22 @@ function startDateBeforeEndDate(element, index, array) {
 class Schedule extends Component {
     render() {
         const formattedData =  this.props.appointments.filter(startDateBeforeEndDate).map(mapAppointmentData);
-    return (
-      <div>
-          <MuiThemeProvider theme={theme}>
-            <Paper>
-              <Scheduler onAppointmentClick={this.handleEvent} height={600} data={formattedData}>
-                <ViewState currentDate={this.props.appointments[0].startDate} />
-
-                <WeekView
-
-                    intervalCount= {1}
-                    cellDuration= {60}
-                />
-
-                <Appointments/>
-
-              </Scheduler>
-
-            </Paper>
-          </MuiThemeProvider>
-
-      </div>
-    );
-  }
+        return (
+              <MuiThemeProvider theme={theme}>
+                <Paper>
+                  <Scheduler onAppointmentClick={this.handleEvent} height={600} data={formattedData}>
+                    <ViewState currentDate={this.props.appointments[0].startDate} />
+                    <WeekView
+                        intervalCount= {1}
+                        cellDuration= {60}
+                    />
+                    <Appointments/>
+                  </Scheduler>
+                </Paper>
+                
+              </MuiThemeProvider>
+        );
+    }
 }
 
 export default Schedule

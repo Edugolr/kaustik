@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 const styles = {
     fab: {
         margin: '50%',
-        marginTop: 10,
+        marginTop: -10,
         marginBottom: 10
     },
 

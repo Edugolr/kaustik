@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Schedule from './components/Schedule';
 import NavBar from './components/NavBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 class App extends Component {
     constructor(props) {
@@ -38,10 +40,11 @@ class App extends Component {
         return <div>Loading...</div>;
       } else {
         return (
-            <div>
-                <NavBar />
-                <Schedule appointments={appointments}/>
-            </div>
+            <React.Fragment>
+                <CssBaseline />
+                    <NavBar />
+                    <Schedule appointments={appointments}/>
+            </React.Fragment>
         );
       }
     }
