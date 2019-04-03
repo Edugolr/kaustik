@@ -15,7 +15,6 @@ import {
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import red from '@material-ui/core/colors/red';
 
-
 const theme = createMuiTheme({
     typography: {
        useNextVariants: true,
