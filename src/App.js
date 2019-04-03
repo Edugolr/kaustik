@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Schedule from './components/Schedule';
 import NavBar from './components/NavBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
+import BottomNav from './components/BottomNav';
 
 class App extends Component {
     constructor(props) {
@@ -33,6 +32,7 @@ class App extends Component {
         )
     }
     render() {
+
       const { error, isLoaded, appointments } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
@@ -40,11 +40,13 @@ class App extends Component {
         return <div>Loading...</div>;
       } else {
         return (
-            <React.Fragment>
+            <div >
                 <CssBaseline />
-                    <NavBar />
-                    <Schedule appointments={appointments}/>
-            </React.Fragment>
+                <NavBar />
+                <Schedule appointments={appointments}/>
+                <BottomNav/>
+            </div>
+
         );
       }
     }

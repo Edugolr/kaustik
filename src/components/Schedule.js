@@ -4,27 +4,33 @@ import Paper from "@material-ui/core/Paper";
 import { ViewState } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
+  MonthView,
+  DayView,
   WeekView,
-  Appointments
+  Appointments,
+  Toolbar,
+  DateNavigator,
+  ViewSwitcher,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { purple } from "@material-ui/core/colors";
-import Grid from '@material-ui/core/Grid';
+import red from '@material-ui/core/colors/red';
+
 
 const theme = createMuiTheme({
     typography: {
        useNextVariants: true,
      },
-  palette: {
-    primary: purple,
-    secondary: {
-      main: '#f44336',
+    palette: {
+        primary: red,
+        secondary: {
+          main: '#f44336',
+        },
     },
-  },
 });
 
 //map to get title
 const mapAppointmentData = appointment => ({
+  id: appointment.id,
   startDate: appointment.startDate,
   endDate: appointment.endDate,
   title: appointment.activity + '   ' + appointment.location,
@@ -42,17 +48,25 @@ class Schedule extends Component {
         return (
               <MuiThemeProvider theme={theme}>
                 <Paper>
-                  <Scheduler onAppointmentClick={this.handleEvent} height={600} data={formattedData}>
-                    <ViewState currentDate={this.props.appointments[0].startDate} />
-                    <WeekView
+                    <Scheduler onAppointmentClick={this.handleEvent} data={formattedData} height={600}>
+                        <ViewState
+                        defaultCurrentDate={this.props.appointments[0].startDate}
+                        defaultCurrentViewName="Month"
+                        />
+                        <MonthView/>
+                        <WeekView
                         intervalCount= {1}
                         cellDuration= {60}
-                    />
-                    <Appointments/>
-                  </Scheduler>
+                        />
+                        <DayView/>
+                        <Appointments/>
+                        <Toolbar/>
+                        <ViewSwitcher />
+                        <DateNavigator />
+                    </Scheduler>
                 </Paper>
-                
               </MuiThemeProvider>
+
         );
     }
 }
